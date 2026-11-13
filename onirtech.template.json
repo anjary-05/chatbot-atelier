@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 1,
+  "kind": "template",
+  "id": "chatbot-atelier",
+  "name": "Chatbot Atelier — Spin Product",
+  "description": "Template chatbot Onirtech au design « Spin Product » : cartes blanches à encoches, typo monospace, accent noir. Toutes les variables dynamiques pilotent l'affichage. Compatible surfaces page et widget.",
+  "version": "2.5.0",
+  "publisher": {
+    "id": "onirtech",
+    "name": "ONIRTECH",
+    "trustLevel": "official"
+  },
+  "compatibility": {
+    "hostProtocol": "onirtech.template-host.v1"
+  },
+  "ui": {
+    "mode": "web-component",
+    "entry": "./dist/index.js",
+    "element": "onirtech-template-chatbot-atelier",
+    "shadowDom": "open",
+    "widget": {
+      "entry": "./dist/widget.js",
+      "element": "onirtech-widget-chatbot-atelier",
+      "integrity": "sha256-qCcpP3s/2Z7pFdQ39hBN/kpGOImLRAksb1TP+7+eVeY=",
+      "display": {
+        "defaultPosition": "bottom-right",
+        "allowedPositions": [
+          "bottom-right",
+          "bottom-left"
+        ],
+        "closedSize": {
+          "width": 64,
+          "height": 64
+        },
+        "openSize": {
+          "width": 420,
+          "height": 680
+        },
+        "maxSize": {
+          "width": 520,
+          "height": 760
+        }
+      }
+    },
+    "integrity": "sha256-opQ9mMh2aZ8Lu8g9p6wiNbObxS5LFwRiSbByd3Y+yl0="
+  },
+  "capabilities": [
+    "messages",
+    "media",
+    "theme",
+    "fallback",
+    "knowledge",
+    "userState"
+  ],
+  "network": [
+    "https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P",
+    "https://fonts.googleapis.com",
+    "https://fonts.gstatic.com"
+  ],
+  "params": [
+    {
+      "key": "brand_name",
+      "label": "Nom de marque",
+      "description": "Logo affiché en haut à gauche de l'en-tête.",
+      "default": "ONIRTECH",
+      "type": "string",
+      "maxLength": 40
+    },
+    {
+      "key": "brand_crumbs",
+      "label": "Fil d'Ariane",
+      "description": "Fil d'Ariane sous le logo. Laisser vide pour le masquer.",
+      "default": "ACCUEIL > ASSISTANCE",
+      "type": "string",
+      "maxLength": 80
+    },
+    {
+      "key": "nav_items",
+      "label": "Navigation",
+      "description": "Entrées de navigation du pied de page, séparées par « | ».",
+      "default": "Accueil | Services | Contact",
+      "type": "text",
+      "maxLength": 200
+    },
+    {
+      "key": "counter_label",
+      "label": "Libellé du compteur",
+      "description": "Préfixe du compteur de messages (en-tête).",
+      "default": "MSG",
+      "type": "string",
+      "maxLength": 12
+    },
+    {
+      "key": "status_active",
+      "label": "Statut en cours",
+      "description": "Statut affiché quand la conversation est ouverte.",
+      "default": "En ligne",
+      "type": "string",
+      "maxLength": 40
+    },
+    {
+      "key": "status_done",
+      "label": "Statut terminé",
+      "description": "Statut affiché une fois la conversation finalisée.",
+      "default": "Conversation terminée",
+      "type": "string",
+      "maxLength": 40
+    },
+    {
+      "key": "bot_name",
+      "label": "Nom du bot",
+      "description": "Nom de l'assistant (en-tête, bulles, indicateur de frappe).",
+      "default": "Orvante",
+      "type": "string",
+      "maxLength": 40
+    },
+    {
+      "key": "bot_role",
+      "label": "Fonction du bot",
+      "description": "Précision sous le nom de l'assistant.",
+      "default": "Assistante éditoriale",
+      "type": "string",
+      "maxLength": 60
+    },
+    {
+      "key": "bot_avatar_image",
+      "label": "Avatar du bot",
+      "description": "Portrait de l'assistant : image téléversée depuis le panneau (PNG, JPEG ou WebP). Laisser vide pour les initiales.",
+      "default": "https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/300f41b1-3de5-4153-afde-06e15e753ad0.webp",
+      "type": "image"
+    },
+    {
+      "key": "user_label",
+      "label": "Libellé du visiteur",
+      "description": "Nom affiché sur les messages du visiteur.",
+      "default": "Vous",
+      "type": "string",
+      "maxLength": 20
+    },
+    {
+      "key": "user_icon",
+      "label": "Icône du visiteur",
+      "description": "Icône affichée à côté des messages du visiteur.",
+      "default": "profile",
+      "type": "select",
+      "options": [
+        {
+          "value": "profile",
+          "label": "Profil"
+        },
+        {
+          "value": "person",
+          "label": "Silhouette"
+        },
+        {
+          "value": "guest",
+          "label": "Visiteur encadré"
+        },
+        {
+          "value": "anonymous",
+          "label": "Anonyme"
+        }
+      ]
+    },
+    {
+      "key": "welcome_message",
+      "label": "Message d'accueil",
+      "description": "Premier message affiché si la discussion est vide.",
+      "default": "Bonjour. Je suis Orvante. Dites-moi ce que vous cherchez.",
+      "type": "text",
+      "maxLength": 300
+    },
+    {
+      "key": "input_placeholder",
+      "label": "Placeholder du message",
+      "description": "Texte d'invite dans le champ de saisie.",
+      "default": "Écrivez votre message…",
+      "type": "string",
+      "maxLength": 80
+    },
+    {
+      "key": "send_label",
+      "label": "Libellé envoyer",
+      "description": "Bouton d'envoi du message.",
+      "default": "ENVOYER",
+      "type": "string",
+      "maxLength": 20
+    },
+    {
+      "key": "finish_label",
+      "label": "Libellé terminer",
+      "description": "Bouton de fin de conversation.",
+      "default": "TERMINER",
+      "type": "string",
+      "maxLength": 20
+    },
+    {
+      "key": "typing_text",
+      "label": "Texte de frappe",
+      "description": "Complété par le nom du bot pendant la rédaction de la réponse.",
+      "default": "est en train d’écrire…",
+      "type": "string",
+      "maxLength": 60
+    },
+    {
+      "key": "phase_label",
+      "label": "Surtitre de phase",
+      "description": "Pastille affichée dans l'en-tête de la discussion.",
+      "default": "CONVERSATION",
+      "type": "string",
+      "maxLength": 24
+    },
+    {
+      "key": "composer_hint",
+      "label": "Astuce du composeur",
+      "description": "Ligne d'aide sous le champ de saisie.",
+      "default": "Entrée pour envoyer",
+      "type": "string",
+      "maxLength": 80
+    },
+    {
+      "key": "info_kicker",
+      "label": "Surtitre de présentation",
+      "description": "Sur-titre au-dessus du nom de l'assistant (écran d'accueil).",
+      "default": "● (À PROPOS)",
+      "type": "string",
+      "maxLength": 40
+    },
+    {
+      "key": "info_title",
+      "label": "Titre des détails",
+      "description": "Titre du panneau de détails de l'assistant.",
+      "default": "Une relation\nqui se construit",
+      "type": "text",
+      "maxLength": 120
+    },
+    {
+      "key": "info_metric",
+      "label": "Mesure",
+      "description": "Grand nombre mis en avant dans la carte d'information.",
+      "default": "24/7",
+      "type": "string",
+      "maxLength": 24
+    },
+    {
+      "key": "info_tag",
+      "label": "Tag d'information",
+      "description": "Étiquette accolée à la mesure.",
+      "default": "EN LIGNE",
+      "type": "string",
+      "maxLength": 24
+    },
+    {
+      "key": "info_rows",
+      "label": "Lignes d'accordéon",
+      "description": "Lignes du panneau de détails : une par ligne, au format « Titre|Texte ». La première ligne s'ouvre au déploiement.",
+      "default": "Description|Un assistant disponible, des réponses claires et un suivi pensé pour les marques qui veulent avancer vite.\nHoraires|Du lundi au vendredi, 08:00 — 18:00. Réponse sous 24 h ouvrées.\nConfidentialité|Aucune donnée n'est conservée au-delà de la conversation.",
+      "type": "text",
+      "maxLength": 1200
+    },
+    {
+      "key": "action_kicker",
+      "label": "Surtitre suggestions",
+      "description": "Sur-titre de la barre de suggestions.",
+      "default": "OPTIONS",
+      "type": "string",
+      "maxLength": 40
+    },
+    {
+      "key": "action_title",
+      "label": "Titre des suggestions",
+      "description": "Titre de la barre de suggestions.",
+      "default": "Suggestions",
+      "type": "string",
+      "maxLength": 40
+    },
+    {
+      "key": "suggestion_items",
+      "label": "Suggestions",
+      "description": "Suggestions de départ : une par ligne, au format « Libellé|Question ». Ignorées si l'hôte fournit un menu de secours.",
+      "default": "Devis|Bonjour, je souhaite un devis pour un projet.\nRDV|Pouvons-nous fixer un rendez-vous cette semaine ?\nDocs|Quels documents dois-je préparer pour notre échange ?",
+      "type": "text",
+      "maxLength": 800
+    },
+    {
+      "key": "toggle_label",
+      "label": "Libellé de l'interrupteur",
+      "description": "Libellé du bouton d'enregistrement (carte d'actions).",
+      "default": "SAVER",
+      "type": "string",
+      "maxLength": 20
+    },
+    {
+      "key": "toggle_saved_label",
+      "label": "Libellé une fois enregistré",
+      "description": "Libellé du bouton d-interrupteur lorsqu'il est activé.",
+      "default": "SAVED",
+      "type": "string",
+      "maxLength": 20
+    },
+    {
+      "key": "action_note",
+      "label": "Note des suggestions",
+      "description": "Précision sous les suggestions.",
+      "default": "Chaque clic envoie un message ou ouvre une demande de rappel.",
+      "type": "text",
+      "maxLength": 240
+    },
+    {
+      "key": "identity_kicker",
+      "label": "Surtitre identité",
+      "description": "Sur-titre du formulaire d'identité.",
+      "default": "● (IDENTITÉ)",
+      "type": "string",
+      "maxLength": 40
+    },
+    {
+      "key": "identity_title",
+      "label": "Titre du formulaire",
+      "description": "Titre affiché avant le formulaire d'identité.",
+      "default": "Commençons",
+      "type": "string",
+      "maxLength": 60
+    },
+    {
+      "key": "identity_text",
+      "label": "Introduction du formulaire",
+      "description": "Phrase d'introduction du formulaire d'identité.",
+      "default": "Deux informations suffisent pour ouvrir la discussion.",
+      "type": "text",
+      "maxLength": 240
+    },
+    {
+      "key": "name_field",
+      "label": "Champ nom",
+      "description": "Étiquette et exemple du champ nom, séparés par « | ».",
+      "default": "Nom | Votre nom",
+      "type": "text",
+      "maxLength": 80
+    },
+    {
+      "key": "email_field",
+      "label": "Champ email",
+      "description": "Étiquette et exemple du champ email, séparés par « | ».",
+      "default": "Email | vous@exemple.com",
+      "type": "text",
+      "maxLength": 80
+    },
+    {
+      "key": "consent_label",
+      "label": "Libellé du consentement",
+      "description": "Texte du consentement si la politique du lien n'en fournit pas. Laisser vide pour masquer la case.",
+      "default": "J'accepte le traitement de mes données",
+      "type": "string",
+      "maxLength": 160
+    },
+    {
+      "key": "start_label",
+      "label": "Libellé de démarrage",
+      "description": "Bouton de soumission du formulaire d'identité.",
+      "default": "DÉMARRER",
+      "type": "string",
+      "maxLength": 40
+    },
+    {
+      "key": "footer_left",
+      "label": "Pied de page gauche",
+      "description": "Texte à gauche du pied de page.",
+      "default": "ONIRTECH / 2026",
+      "type": "string",
+      "maxLength": 60
+    },
+    {
+      "key": "footer_right",
+      "label": "Pied de page droite",
+      "description": "Texte à droite du pied de page.",
+      "default": "DISPONIBLE 24/7",
+      "type": "string",
+      "maxLength": 60
+    },
+    {
+      "key": "details_label",
+      "label": "Libellé des détails",
+      "description": "Étiquette du bouton qui déploie le panneau de détails de l'assistant.",
+      "default": "Détails de l'assistant",
+      "type": "string",
+      "maxLength": 40
+    },
+    {
+      "key": "primary_color",
+      "label": "Couleur principale",
+      "description": "Couleur d'accent (repli si un thème hôte est fourni).",
+      "default": "#111111",
+      "type": "color"
+    }
+  ]
+}
